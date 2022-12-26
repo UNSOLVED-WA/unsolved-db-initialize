@@ -13,7 +13,7 @@ def db_setting():
 
     cur.execute('CREATE TABLE IF NOT EXISTS problem('
                 'id INTEGER PRIMARY KEY AUTO_INCREMENT,'
-                'boj_id BIGINT,'
+                'problem_number BIGINT,'
                 'title VARCHAR(50),'
                 'tier INTEGER,'
                 'created_at DATETIME DEFAULT CURRENT_TIMESTAMP,'

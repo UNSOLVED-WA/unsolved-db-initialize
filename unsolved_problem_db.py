@@ -3,6 +3,7 @@ from time import sleep
 import requests
 import pymysql
 import sqlite3
+import time
 from unsolved_db_setting import db_setting
 
 
@@ -32,6 +33,7 @@ def get_problem_by_level(level):
                 problems.append(item)
         else:
             print("난이도별  문제 요청 실패")
+        time.sleep(1)
     return problems
 
 def init_problem():
@@ -52,7 +54,7 @@ def init_problem():
         for level_problem in level_problems:
             problem = [level_problem.get("problemId"), level_problem.get("titleKo"), level_problem.get("level")]
             problems.append(problem)
-        insert_sql = "INSERT IGNORE INTO problem(boj_id, title, tier) VALUES (%s, %s ,%s);"
+        insert_sql = "INSERT IGNORE INTO problem(problem_number, title, tier) VALUES (%s, %s ,%s);"
         cur.executemany(insert_sql, problems)
         db.commit()
     cur.close()
